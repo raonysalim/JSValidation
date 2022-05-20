@@ -1,11 +1,61 @@
+/*Global*/
+*{
+    background-color: rgb(242, 238, 248);
+}
+*:focus{
+    outline:none
+}
+/*tittle*/
+.titleContainer{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.titleText{
+    font-size: 50px;
+}
+
+/*input and form*/
+
 .campoOk{
     border-color: rgb(28, 245, 39);
     border-width: 2px;
     border-radius: 5px;
+    width: 500px;
+    height: 25px;
 }
 
 .campoErrado{
     border-color: rgb(255, 0, 0);
     border-width: 2px;
     border-radius: 5px;
+    width: 500px;
+    height: 25px;
+}
+
+.containerForm{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.containerInput{
+    margin-top: 100px;
+}
+
+.marginSenha{
+    margin-left:13px;
+}
+
+.marginEmail{
+    margin-left: 10px;
+}
+
+.display{
+    display:block;
+}
+
+.displayNone{
+    display:none;
 }
