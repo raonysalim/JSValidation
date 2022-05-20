@@ -1,0 +1,11 @@
+.campoOk{
+    border-color: rgb(28, 245, 39);
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+.campoErrado{
+    border-color: rgb(255, 0, 0);
+    border-width: 2px;
+    border-radius: 5px;
+}
