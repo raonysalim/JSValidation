@@ -7,13 +7,16 @@ export default function(){
     const[formSenha, setSenha]=useState('')
     const[formEmail, setEmail]=useState('')
   //  const usuarioReg= /(\d{1,5})(\u0021-\u002F|\u003A-\u0040|\u005B-\u0060)/;
-    const senhaReg= /([A-Z]{5})([\u0021-\u002C]|[\u002E-\u002F]|[\u003A-\u0040]|[\u005B-\u0060]){6}(\u002D{2})/g;
     const usuarioReg=/ /
-    const emailReg=/@gmail\.com/
+    const senhaRegUpperCase= /([A-Z].*){5}/g;
+    const senhaRegSymbols=/(([\u0021-\u002C]|[\u002E-\u002F]|[\u003A-\u0040]|[\u005B-\u0060]).*){6}/g
+    const senhaRegHiphens=/(\u002D).*(\u002D)/g
+    const emailReg=/@gmail\.com{1}/
     const error='Errado'
     const certo='Ok'
     const testUsuario=!usuarioReg.test(formUsuario)&&formUsuario.length>=1
-    const testSenha=senhaReg.test(formSenha)
+    const testSenha=senhaRegUpperCase.test(formSenha)&&senhaRegSymbols.test(formSenha)&&senhaRegHiphens.test(formSenha)
+    const testEmail=emailReg.test(formEmail)
     
     return (
         <div>
@@ -31,7 +34,7 @@ export default function(){
                     onChange={(e)=>{setUsuario(e.target.value)}}
                     className={testUsuario?styles.campoOk:styles.campoErrado}
                     />
-                    <p className={testUsuario?styles.displayNone:styles.display}>Não utilize espaços no usuario, não existe limite de caracteres, qualquer caractere pode ser utilizado</p>
+                    <p className={testUsuario?styles.displayNone:styles.display}>Não utilize espaços no usuario, qualquer caractere pode ser utilizado</p>
                     </div>
                     <div className={styles.containerInput}>
                     <label htmlFor="senha">Senha: </label>
@@ -42,7 +45,7 @@ export default function(){
                     onChange={(e)=>{setSenha(e.target.value)}}
                     className={`${testSenha?styles.campoOk:styles.campoErrado} ${styles.marginSenha}`}
                      />
-                    <p className={testSenha?styles.displayNone:styles.display}>A senha precisa de cinco letras maiusculas, 6 simbolos(ex:# @ *) e 2 dois hífens.</p>
+                    <p className={testSenha?styles.displayNone:styles.display}>A senha precisa ter no mínimo cinco letras maiusculas, 6 simbolos(ex:# @ *) e 2 dois hífens.</p>
                      </div>
                     <div className={styles.containerInput}>
                     <label htmlFor="e-mail">E-mail: </label>
@@ -51,15 +54,13 @@ export default function(){
                      id="e-mail"
                      placeholder='Digite seu usuario'
                      onChange={(e)=>{setEmail(e.target.value)}}
-                     className={`${emailReg.test(formEmail)?styles.campoOk:styles.campoErrado} ${styles.marginEmail}`}
+                     className={`${testEmail?styles.campoOk:styles.campoErrado} ${styles.marginEmail}`}
                     />
+                    <p className={testEmail?styles.displayNone:styles.display}>Apenas os endereços do gmail serão validos</p>
                     </div>
                     
                 </form> 
            </div>
-           {console.log(senhaReg.test(formSenha))}
-           <p>seguinte irmão{formUsuario}</p>
-
         </div>
     )
 }
